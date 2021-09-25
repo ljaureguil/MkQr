@@ -1,0 +1,517 @@
+<html>
+
+<head id="h1">
+    <meta id="me" name="viewport" content="width=device-width">
+</head>
+
+<style id="s1">
+    body {
+        text-align: center;
+    }
+    #todo {
+        display: none;
+    }
+    body {
+        // text-align: center;
+        font-size: 15px;
+        margin: 20px;
+        background: white;
+    }
+    code# {
+        margin: 5%;
+        width: 10%;
+        position: absolute;
+        bottom: 2%;
+        right: 1%;
+    }
+    button {
+        width: 80%;
+        font-size: 20px;
+        border-radius: 10px;
+        background: rgb(245, 25, 14);
+        margin: 12px;
+        color: white;
+    }
+    input{
+        height:40px;
+         font-size: 20px;
+         margin:15px;
+        }
+    #reader {
+        width: 100%;
+        color: white;
+        font-size: 15px;
+    }
+    #ta {
+        width: 95%;
+        display: none;
+    }
+    #tx {
+        margin: 5%;
+        width: 90%;
+        font-size: 15px;
+        height: 20%;
+        background-color: turquoise;
+    }
+    .c2 {
+        display: grid;
+        grid-column-gap: 30px;
+        // grid-template-columns: auto;
+        grid-template-columns: 80%;
+        background-color: white;
+        padding: 30px;
+    }
+    .grid-container {
+        width: 100%;
+        display: grid;
+        grid-column-gap: 5%;
+        // grid-template-columns: auto auto auto;
+        grid-template-columns: 45% 45%;
+        background-color: white;
+        padding: 8px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .grid-item {
+        height: 50px;
+        margin: 15px;
+        border: .5px solid rgba(0, 0, 0, 0.8);
+        padding: 12px;
+        text-align: right;
+    }
+    .cdt {
+        border-style: solid;
+        height: 5%;
+        width: 30%;
+        background-color: green;
+    }
+    .cimg {
+        width: 50px;
+        height: 50px;
+    }
+    .cpn {
+        width: 50%;
+        background-color: white;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 5px;
+    }
+    .cbq {
+        margin: 5px;
+        color: white;
+        background-color: black;
+        height: 5%;
+    }
+    .cadj {
+        width: 50%;
+        z-index: 1;
+    }
+    #bsh {
+        position: absolute;
+        top: 0%;
+        right: 0%;
+        width: auto;
+        font-size: 15px;
+    }
+    #menu {
+        width: 85%;
+        padding: 30px;
+        position: absolute;
+        top: 30%;
+        left: 3%;
+        display: none;
+        border-style: double;
+        ;
+        border-color: white;
+        background-color: rgba(10, 148, 179, 0.3);
+        z-index: 5;
+        box-shadow: -10px 10px 50px 1px black;
+    }
+    #spacer {
+        width: 100%;
+        height: .1%;
+    }
+    #cap {
+        font-size:20px;
+        margin:20px;
+        width: 80%;
+       // height: 35%;
+       color:white;
+        border-style: solid;
+        display: none;
+        background: rgba(50, 50, 100, .75);
+        position:absolute;
+        left:5%;
+        top:2%;
+        border-radius:5px;
+        box-shadow: -25px 25px 40px 3px rgba(30,30,30,.475);
+    }
+    #plus{
+        position:absolute;
+        right:10px;
+        top:30%;
+        width:55px;
+        height:55px;
+    }
+    #de{
+ 
+        background:#1a1;
+        display:none;
+        
+    }
+</style>
+<img id="plus" onclick="cap.style.display='block';ipn.value='';ides.value='';iplace.value='';iqt.value=1;" src="https://findicons.com/files/icons/1014/ivista/256/plus.png">
+<div id="spacer"></div>
+<div class="grid-container" id="tags">
+</div>
+<div id="menu">
+
+    <button id="brecover" onclick="sendToMaster()">Send Set to Master</button>
+
+
+</div>
+<br>
+<br>
+<br>
+<br>
+
+
+<button id="bsh" onclick="if(menu.style.display==='block'){menu.style.display='none'}else{ menu.style.display='block';}">M</button>
+<div id="cap">
+
+Introduce information:<br><br>
+   Part No. <input class="cadj" type="text" id="ipn" value="" oninput=""><br>
+   
+   Desc. <textarea class="cadj" type="text" id="ides" value=" " oninput=""></textarea><br>
+   Quty.  <input class="cadj" type="number" id="iqt" value="1" oninput=""><br>
+   Place <input class="cadj" type="text" id="iplace" value="" oninput=""><br>
+    <button id="bt" onclick="cap.style.display='none';mktag(this)">Create</button>
+   <button id="cl" onclick="cap.style.display='none';">Cancel</button>
+   <button id="de" onclick="delTag()">Delete Tag</button>
+
+
+
+</div>
+
+<script src="html5-qrcode.min.js"></script>
+<script src="qr.js">
+    //<button id="showall" onclick="crPost()">Create post</button>
+</script>
+
+<script> 
+var acualTag=null;
+// var linkp = 'https://jsonblob.com/api/d0317ef4-f48e-11eb-9b1d-755fd0c1d5cb';
+    var linkp = 'http://jsonblob.com/api/888147046700433408'
+    var Obj = {};
+    GetJ(linkp,function(o){Obj=o;})
+    var arset = [];
+    mode = "add";
+    // window.location.reload();
+    var R = 11 / 8.5;
+    // alert(s1.innerHTML)
+    tags.style.gridIemplateColumns = "10% 10% 10%"
+   var cimg=null;
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var radio = h / w;
+    if (radio > 1.1) {
+        //         tags.removeClass();
+        tags.setAttribute("class", "c2")
+    } else {}
+
+
+
+    function loadDoc(url, callback) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", url, false);
+        xhttp.send();
+        callback(xhttp.responseText);
+
+    }
+
+    var cont = "";
+    var user = localStorage.getItem("user");
+    if (user === null) {
+        var n = prompt("Hi, Type your name")
+        if (n != null) localStorage.setItem("user", n);
+    } else {
+        alert("Hi " + user);
+
+    }
+    function setTags() {
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        for (var i = 0; i < 18; i++) {
+            tags.appendChild(crTag())
+        }
+        cont = tags.innerHTML;
+    }
+
+        function editTag(ob){
+        actualTag=ob;
+        
+        cap.style.display='block';
+        de.style.display="block";
+        if(ob===undefined){
+        ipn.value="";
+        ides.value="";
+        iqt.value=1;       
+        }
+        else{
+        ipn.value=ob.name.pn;
+        ides.value=ob.name.des;
+        iqt.value=ob.name.qty;
+        iplace.value=ob.name.place;
+
+        }
+    }
+ 
+    function crTag(ob) {
+    //    alert(ob)
+        var d = document.createElement("div");
+        d.name=ob;
+        d.setAttribute("class", "grid-item")
+  
+        d.setAttribute("onclick", "editTag(this);")
+        if (ob != undefined) {
+            d.innerHTML = ob.pn + " _ ";
+            d.setAttribute("id", ob.pn)
+            d.value = ob.qty;
+            
+
+        }
+        //  alert("oh")
+        var im = document.createElement("img");
+        im.setAttribute("id", "i"+ob.pn)
+        
+        //alert
+        if (ob != undefined) im.src =genTag(ob.pn + ' : ' + ob.des)// ob.url;
+        im.setAttribute("class", "cimg");
+        d.appendChild(im);
+    
+        return d;
+
+    }
+
+
+    function delTag() {
+        
+        if(confirm("Do you want to delete "+actualTag.name.pn)){
+            actualTag.remove();
+            
+            de.style.display="none";
+            cap.style.display="none";
+            
+                  for(var i=0;i<arset.length;i++){
+            if(ipn.value===arset[i].pn){
+                //ii=i;
+                alert(arset.length);
+                arset.splice(i,1);
+                alert(arset.length);
+                
+              i=arset.length;
+            }}
+            
+            
+        }
+  
+    }
+
+    function readySc() {
+        cont = tags.innerHTML;
+        var tgs = tags.getElementsByTagName("div");
+        for (var i = 0; i < tgs.length; i++) {
+            if (tgs[i].value == "" || tgs[i].value == undefined) tgs[i].style.display = "none";
+
+        }
+    }
+
+    function showAll() {
+        tags.innerHTML = cont
+
+    }
+function mktag(ob){   
+ 
+     var ii=-1; 
+     var o = {};
+        o.pn = ipn.value;
+        o.des = ides.value;
+        o.qty = iqt.value; 
+        o.printed = false;
+        o.created = new Date().toString();
+        o.createdBy = user;
+        o.place=iplace.value;
+        if (o.des === null || o.des === "" || o.des === undefined) o.des = "";
+        
+        
+    if(ob!=undefined){
+        
+        
+        var tt=tags.children;
+        for(var i=0;i<tt.length;i++){
+            if(o.pn===tt[i].id){
+                actualTag=tt[i];
+                
+            }
+        }
+        
+    
+       
+        for(var i=0;i<arset.length;i++){
+            if(ipn.value===arset[i].pn){
+                ii=i;
+              i=arset.length;
+            }}
+       if(ii>-1){
+           if(confirm("Save Changes to "+o.pn+"?")){
+               actualTag.children[0].src=genTag(o.pn + ' : ' + o.des);
+               actualTag.name=o;
+               
+               arset[ii]=o;  
+        }
+           
+       }
+       else{
+       var e=crTag(o)
+        e.name=o;
+          arset.push(o);
+           tags.appendChild(e);      
+       }
+
+
+}
+}
+
+    function copyCl() {
+
+        GetJ(linkp, function(obj) {
+            var ps = obj.parts;
+            var so = ""
+            var t = document.createElement("textarea");
+            document.body.appendChild(t);
+
+            for (var i = 0; i < ps.length; i++) {
+                so += ps[i].qty + String.fromCharCode(9) + ps[i].pn + String.fromCharCode(9) + ps[i].des + "\n"
+            }
+            t.innerHTML = so;
+            t.select();
+            document.execCommand("copy");
+
+            alert(so);
+            document.body.removeChild(t)
+        });
+    }
+
+    function GetJ(url, callback) {
+
+        //var url  = "http://localhost:8080/api/v1/users";
+        var xhr = new XMLHttpRequest()
+        xhr.open('GET', url + '/1', true)
+        xhr.onload = function() {
+            //         (xhr.responseText)
+            var users = JSON.parse(xhr.responseText);
+            //     var obb=decoding(users.prim);
+
+            if (xhr.readyState == 4 && xhr.status == "200") {
+                callback(users);
+            } else {
+                console.error(users);
+            }
+        }
+        xhr.send(null);
+    }
+
+    // Update a user
+    function UpdateJ(url, ob, callback) {
+        json = JSON.stringify(ob);
+        var xhr = new XMLHttpRequest();
+        xhr.open("PUT", url + '/12', true);
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.onload = function() {
+            var users = JSON.parse(xhr.responseText);
+            if (xhr.readyState == 4 && xhr.status == "200") {
+                //  alert("Tu Forma ha sido Enviada");
+                if (callback != undefined) callback(users);
+            } else {
+                (users);
+            }
+        }
+        xhr.send(json);
+    }
+
+    function crPost() {
+
+
+        alert("ready");
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://jsonblob.com/api/jsonBlob', true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json') //
+        xhr.setRequestHeader('Accept', 'application/json') // ,'Accept: application/json');
+        xhr.onload = function(loc) {
+            // do something to response
+            prompt("copy ", this.responseText);
+            prompt("copy ", this.xJsonblob);
+
+
+        };
+        xhr.send('{"people":["bill", "steve", "bob"]}');
+
+    }
+
+    function sendToMaster() {
+        if(arset.length>0){
+        if (confirm("Are you Sure?")) GetJ(linkp, function(obj) {
+            var p=obj.parts; 
+            var ex=false;
+             for (var i = 0; i < arset.length; i++) {
+                ex=false;
+            for(var ii=0;ii<p.length;ii++){
+
+              if(p[ii].pn===arset[i].pn){
+                   var t=JSON.stringify(p[ii]);
+                   t=t.replace(/{/g,"\n").replace(/}/g,"\n").replace(/"/g,"");
+                   t=t.replace(/,/g,"\n");
+                   t=t.replace(/:/g,": ");
+                  if(confirm(p[ii].pn+" Already exist in Master:\n\n"+t+"\n\ndo you want to replace it?")){
+                      obj.parts.push(arset[i]);
+                      ex=true;
+                      ii=p.length;
+                  }
+           }
+            }
+             if(!ex)  obj.parts.push(arset[i]);
+            }
+               UpdateJ(linkp, obj, function() {
+                   alert("Set has been sent to Master");
+                   if(confirm("Set has been sent to Master\nLocal tag set will be deleted and app reinitialised...")) window.location.reload();
+                });
+    });
+        }
+        else alert("No Tags to send to Master");
+    }
+       
+    function genTag(tx){
+        var c=document.createElement("canvaS");
+        qr = new QRious({
+                    element: c, 
+                    size: 800,
+                    value: tx
+                });
+          return qr.toDataURL();
+         }
+</script>
+<script>
+    /*<button id="brecover" onclick="copyCl()">Copy</button>
+<button id="btprep" onclick="delTag()">Set Delete Mode</button>
+<button id="showall" onclick="showAll()">Reset All</button>
+
+  //    o.url =genTag(o.pn + ' : ' + o.des)// 'https://api.qrserver.com/v1/create-qr-code/?data=' + o.pn + ' ' + o.des + '&amp;size=400x400';
+ 
+
+*/
+</script>
+
+</html>
