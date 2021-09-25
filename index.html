@@ -459,7 +459,9 @@ function mktag(ob){
 
     function sendToMaster() {
         if(arset.length>0){
-        if (confirm("Are you Sure?")) GetJ(linkp, function(obj) {
+        if (confirm("Are you Sure?"))
+           {
+               GetJ(linkp, function(obj) {
             var p=obj.parts; 
             var ex=false;
              for (var i = 0; i < arset.length; i++) {
@@ -484,7 +486,7 @@ function mktag(ob){
                    alert("Set has been sent to Master");
                    if(confirm("Set has been sent to Master\nLocal tag set will be deleted and app reinitialised...")) window.location.reload();
                 });
-    });
+    });}
         }
         else alert("No Tags to send to Master");
     }
