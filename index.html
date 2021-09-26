@@ -193,8 +193,8 @@ Introduce information:<br><br>
 
 </div>
 <script src="qr.js"></script>
-
 <script> 
+
 var acualTag=null;
 // var linkp = 'https://jsonblob.com/api/d0317ef4-f48e-11eb-9b1d-755fd0c1d5cb';
     var linkp = 'http://jsonblob.com/api/888147046700433408'
@@ -215,15 +215,6 @@ var acualTag=null;
         tags.setAttribute("class", "c2")
     } else {}
 
-
-
-    function loadDoc(url, callback) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", url, false);
-        xhttp.send();
-        callback(xhttp.responseText);
-
-    }
 
     var cont = "";
     var user = localStorage.getItem("user");
@@ -500,11 +491,28 @@ function mktag(ob){
                 });
           return qr.toDataURL();
          }
+         
+ 
+       
+           function loadDoc(url, callback) {
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.open("GET", url, false);
+        xhttp.send();
+        callback(xhttp.responseText);
+
+    }
+    
+         
+         
 </script>
 <script>
  
   //    o.url =genTag(o.pn + ' : ' + o.des)// 'https://api.qrserver.com/v1/create-qr-code/?data=' + o.pn + ' ' + o.des + '&amp;size=400x400';
 
+</script>
+
+</html>
 </script>
 
 </html>
