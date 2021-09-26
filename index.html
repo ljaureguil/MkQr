@@ -201,7 +201,7 @@ var acualTag=null;
  var linkp = 'https://jsonblob.com/api/d0317ef4-f48e-11eb-9b1d-755fd0c1d5cb';
  //   var linkp = 'http://jsonblob.com/api/888147046700433408'
     var Obj = {};
-    loadDoc(linkp,function(o){alert(o)})
+    loadDoc(linkp,function(o){Obj=JSON.parse(o)})
     var arset = [];
     mode = "add";
     // window.location.reload();
@@ -231,8 +231,7 @@ var acualTag=null;
         function sendToMaster() {
         if(arset.length>0){
    
-           alert("antes");
-               GetJ(linkp, function(obj) {alert(JSON.stringify(obj));
+               GetJ(linkp, function(obj) {
             var p=obj.parts; 
             var ex=false;
              for (var i = 0; i < arset.length; i++) {
