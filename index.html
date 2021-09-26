@@ -201,7 +201,7 @@ var acualTag=null;
  //  var linkp = 'https://jsonblob.com/api/d0317ef4-f48e-11eb-9b1d-755fd0c1d5cb';
   var linkp = 'http://jsonblob.com/api/888147046700433408'
     var Obj = {};
-    loadDoc(linkp,function(o){Obj=JSON.parse(o)})
+    loadDoc(linkp,function(o){alert(o);Obj=JSON.parse(o);alert("all done")})
     var arset = [];
     mode = "add";
     // window.location.reload();
