@@ -202,7 +202,7 @@ var acualTag=null;
    // var linkp = 'http://jsonblob.com/api/888147046700433408'
  var linkp='https://jsonblob.com/api/892235392494092288';
     var Obj = {};
-   loadDoc(linkp,function(o){alert(o)})
+//   loadDoc(linkp,function(o){alert(o)})
     var arset = [];
     mode = "add";
     // window.location.reload();
@@ -454,7 +454,7 @@ function mktag(ob){
     function sendToMaster() {
         if(arset.length>0){
         if (confirm("Are you Sure?"))
-           {alert("antes");
+           {
                GetJ(linkp, function(obj) {alert(JSON.stringify(obj));
             var p=obj.parts; 
             var ex=false;
